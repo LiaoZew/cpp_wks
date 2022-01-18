@@ -8,7 +8,7 @@ target("zutil")
 
     add_includedirs("src", "imgui", "imgui/backends", "E:/msys64/mingw64/include/freetype2")
 
-    set_toolchains("clang")
+    set_toolchains("mingw")
 
     add_ldflags("-LE:/msys64/mingw64/lib", "-lglfw3 -lfreetype", {force = true})
     add_ldflags("-LE:/msys64/mingw64/x86_64-w64-mingw32/lib", "-lgdi32 -lopengl32", {force = true})

@@ -4,7 +4,8 @@ target("main")
     add_includedirs("CSerialPort/include")
     add_files("CSerialPort/src/*.cpp|*UnixBase.cpp")
 
-    set_toolchains("clang")
+    set_toolchains("mingw")
+    set_languages("c++11")
 
     add_ldflags("-LE:/msys64/mingw64/x86_64-w64-mingw32/lib", "-lsetupapi", {force = true})
 

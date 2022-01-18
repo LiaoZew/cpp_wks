@@ -10,7 +10,7 @@ void main_window()
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
     ImGui::Begin("zutil", &show_main_window, ImGuiWindowFlags_None);  
      // Pass a pointer to our bool variable (the window will have a closing button that will clear the bool when clicked)
-    ImGui::Text("我的%d",a);
+    ImGui::Text("我的  test  %d",a);
 
     ImGui::SameLine();
     if (ImGui::Button("open"))
