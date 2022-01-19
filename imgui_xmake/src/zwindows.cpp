@@ -1,26 +1,35 @@
 #include "zwindows.h"
 
+
+
+bool window_mask;
 bool show_main_window=true;
 bool show_demo_window;
-int a;
+
+
+//uart windows
+int w_uart_index=0;
+bool show_uart_window[255];
+
 
 void main_window()
 {
     static float f = 0.0f;
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
-    ImGui::Begin("zutil", &show_main_window, ImGuiWindowFlags_None);  
-     // Pass a pointer to our bool variable (the window will have a closing button that will clear the bool when clicked)
-    ImGui::Text("我的  test  %d",a);
 
-    ImGui::SameLine();
-    if (ImGui::Button("open"))
-        MySaveFunction();
+    window_mask = show_main_window;
 
 
+    if(show_main_window)
+    {
+        ImGui::Begin("zutil", &show_main_window, ImGuiWindowFlags_None);  
+        // if (ImGui::Button("UART"))
+        //     MySaveFunction();
+        ImGui::End();
+    }
 
-    // ImGui::InputText("string", buf, IM_ARRAYSIZE(buf));
-    // ImGui::SliderFloat("float", &f, 0.0f, 1.0f);
-    ImGui::End();
+    if (show_demo_window)
+        ImGui::ShowDemoWindow(&show_demo_window);
 }
 
 
@@ -31,7 +40,10 @@ void MySaveFunction ()
     else 
         show_demo_window=true;
 
-    a++;
+    w_uart_index++;
+
+    std::cout<<w_uart_index<<std::endl;
+        
 }
 
 
