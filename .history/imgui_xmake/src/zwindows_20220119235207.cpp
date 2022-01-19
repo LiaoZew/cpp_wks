@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2022-01-19 20:41:54
- * @LastEditTime: 2022-01-19 23:56:01
+ * @LastEditTime: 2022-01-19 23:51:47
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \cpp_wks\imgui_xmake\src\zwindows.cpp
@@ -44,11 +44,7 @@ void main_window()
     {
         ImGui::Begin("uart", &show_uart_window, ImGuiWindowFlags_None);  
 
-        ImGui::Text("端  口:");
-        ImGui::Text("波特率:");
-        ImGui::Text("数据位:");
-        ImGui::Text("校验位:");
-        ImGui::Text("流  控:");
+        ImGui::Text("port:");
             
         ImGui::End();
     }

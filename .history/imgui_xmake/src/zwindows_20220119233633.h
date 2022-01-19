@@ -29,4 +29,4 @@ extern bool show_uart_window;
 extern void MySaveFunction ();
 extern void main_window();
 
-extern void openuart();
+// extern void uart_window();
