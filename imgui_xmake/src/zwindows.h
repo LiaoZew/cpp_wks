@@ -10,6 +10,9 @@
 #include <iostream>
 
 
+#include <GLFW/glfw3.h> // Will drag system OpenGL headers
+
+
 extern bool show_main_window;
 extern bool show_demo_window;
 extern int w_uart_index;

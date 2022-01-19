@@ -16,12 +16,12 @@ target("zutil")
 
     add_includedirs("src", "imgui", "imgui/backends", "imgui/freetype2")
 
-    set_toolchains("mingw")
+    set_toolchains("clang")
     -- now use `xmake f -p windows --toolchain=clang`
     
     add_ldflags("-lglfw3 -lfreetype -lgdi32 -lopengl32", {force = true})
 
-    add_ldflags("-mwindows", {force = true})
+    -- add_ldflags("-mwindows", {force = true})
     
 
 

@@ -9,6 +9,8 @@ target("main")
 
     add_ldflags("-lsetupapi", {force = true})
 
+    -- add_ldflags("-mwindows", {force = true})
+
 
 
 
