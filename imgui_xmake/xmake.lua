@@ -10,16 +10,22 @@ add_rules("mode.debug", "mode.release", "mode.minsizerel")
 
 target("zutil")
     set_kind("binary")
+
     add_files("src/*.cpp")
-    add_files("imgui/*.cpp")
-    add_files("imgui/backends/imgui_impl_glfw.cpp","imgui/backends/imgui_impl_opengl3.cpp")
 
     add_includedirs("src", "imgui", "imgui/backends", "imgui/freetype2")
+    add_files("imgui/*.cpp")
+    add_files("imgui/backends/imgui_impl_glfw.cpp","imgui/backends/imgui_impl_opengl3.cpp")
+    
+    add_includedirs("CSerialPort/include")
+    add_files("CSerialPort/src/*.cpp|*UnixBase.cpp")
 
     set_toolchains("clang")
     -- now use `xmake f -p windows --toolchain=clang`
     
-    add_ldflags("-lglfw3 -lfreetype -lgdi32 -lopengl32", {force = true})
+    add_ldflags("-lglfw3 -lfreetype -lgdi32 -lopengl32 ", {force = true})
+
+    add_ldflags("-lsetupapi", {force = true})
 
     -- add_ldflags("-mwindows", {force = true})
     

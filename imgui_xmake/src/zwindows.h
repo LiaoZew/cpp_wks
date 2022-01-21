@@ -17,16 +17,12 @@
 
 #include <iostream>
 
-
 #include <GLFW/glfw3.h> // Will drag system OpenGL headers
 
+#include "zuart.h"
+#include "zglobal.h"
 
-extern bool show_main_window;
-extern bool show_demo_window;
-extern int w_uart_index;
-extern bool show_uart_window;
+void MySaveFunction ();
+void main_window();
 
-extern void MySaveFunction ();
-extern void main_window();
-
-extern void openuart();
+void control_uart_window();

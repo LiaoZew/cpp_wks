@@ -7,18 +7,6 @@
  * @FilePath: \cpp_wks\imgui_xmake\src\zwindows.cpp
  */
 #include "zwindows.h"
-
-
-
-bool window_mask;
-bool show_main_window=true;
-bool show_demo_window;
-
-
-//uart windows
-int w_uart_index=0;
-bool show_uart_window;
-
  
 
 void main_window()
@@ -32,7 +20,7 @@ void main_window()
         ImGui::Begin("zutil", &show_main_window, ImGuiWindowFlags_None);  
 
         if (ImGui::Button("UART"))
-            openuart();
+            control_uart_window();
 
         if (ImGui::Button("DEMO"))
             MySaveFunction();    
@@ -42,6 +30,7 @@ void main_window()
 
     if(show_uart_window)
     {
+        open_uart();
         ImGui::Begin("uart", &show_uart_window, ImGuiWindowFlags_None);  
 
         ImGui::Text("端  口:");
@@ -52,13 +41,17 @@ void main_window()
             
         ImGui::End();
     }
+    else 
+    {
+        uart_window_flag=false;
+    }
 
     if (show_demo_window)
         ImGui::ShowDemoWindow(&show_demo_window);
 }
 
 
-void openuart()
+void control_uart_window()
 {
     if(show_uart_window==true)
         show_uart_window=false;

@@ -3,6 +3,8 @@
 // If you are new to Dear ImGui, read documentation from the docs/ folder + read the top of imgui.cpp.
 // Read online: https://github.com/ocornut/imgui/tree/master/docs
 
+#define EXPORT_GLOBALS
+#include "zglobal.h"
 #include "zwindows.h"
 #if defined(IMGUI_IMPL_OPENGL_ES2)
 #include <GLES2/gl2.h>
@@ -27,6 +29,9 @@ static void glfw_error_callback(int error, const char* description)
 
 int main(int, char**)
 {
+    show_main_window=true;
+    // uart_window_flag=false;
+
     // Setup window
     glfwSetErrorCallback(glfw_error_callback);
     if (!glfwInit())
@@ -107,11 +112,12 @@ int main(int, char**)
 
     io.Fonts->AddFontFromFileTTF("C:/Windows/Fonts/simkai.ttf", 20.0f, NULL, io.Fonts->GetGlyphRangesChineseFull());
 
+
     // Our state
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
     // Main loop        !glfwWindowShouldClose(window)
-    while (show_main_window)
+    while (show_main_window && !glfwWindowShouldClose(window))
     {
         // Poll and handle events (inputs, window resize, etc.)
         // You can read the io.WantCaptureMouse, io.WantCaptureKeyboard flags to tell if dear imgui wants to use your inputs.
