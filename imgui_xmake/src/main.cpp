@@ -32,6 +32,8 @@ int main(int, char**)
     show_main_window=true;
     // uart_window_flag=false;
 
+    
+
     // Setup window
     glfwSetErrorCallback(glfw_error_callback);
     if (!glfwInit())

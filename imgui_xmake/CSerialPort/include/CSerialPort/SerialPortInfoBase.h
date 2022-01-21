@@ -25,6 +25,7 @@ struct SerialPortInfo
 {
     std::string portName;
     std::string description;
+    std::string display;
 };
 
 /**

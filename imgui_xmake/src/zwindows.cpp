@@ -30,15 +30,12 @@ void main_window()
 
     if(show_uart_window)
     {
-        open_uart();
+        
         ImGui::Begin("uart", &show_uart_window, ImGuiWindowFlags_None);  
 
-        ImGui::Text("端  口:");
-        ImGui::Text("波特率:");
-        ImGui::Text("数据位:");
-        ImGui::Text("校验位:");
-        ImGui::Text("流  控:");
-            
+        open_uart();
+
+
         ImGui::End();
     }
     else 

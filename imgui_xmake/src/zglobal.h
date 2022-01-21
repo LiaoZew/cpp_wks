@@ -25,5 +25,19 @@ EXTERN vector<SerialPortInfo> m_availablePortsList;
 EXTERN itas109::CSerialPort sp;
 
 
+EXTERN const char* uart_port_items[255] ;
+EXTERN int uart_port_items_idx ;
+EXTERN int uart_port_num;
+
+
+typedef enum{
+    uart_open,
+    uart_idle,
+    uart_close
+}uart_statu_t;
+EXTERN uart_statu_t uart_statu ;
+
+
+
  
 #endif/*__ZGLOBAL_H__*/

@@ -85,7 +85,8 @@ bool enumDetailsSerialPorts(vector<SerialPortInfo> &portInfoList)
             strFriendlyName = std::string(fname);
 #endif
             // remove (COMxx)
-            strFriendlyName = strFriendlyName.substr(0, strFriendlyName.find(("(COM")));
+            // strFriendlyName = strFriendlyName.substr(0, strFriendlyName.find(("(COM")));
+
 
             m_serialPortInfo.portName = strPortName;
             m_serialPortInfo.description = strFriendlyName;
