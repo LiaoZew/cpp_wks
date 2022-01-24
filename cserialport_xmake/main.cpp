@@ -109,7 +109,7 @@ int main()
 		portName = m_availablePortsList[index].portName;
 		std::cout << "select port name : " << portName << std::endl;
 
-		sp.init(portName);//windows:COM1 Linux:/dev/ttyS0
+		sp.init(portName,115200,ParityNone,DataBits8,StopOne,FlowNone,1024);//windows:COM1 Linux:/dev/ttyS0
 
 		sp.open();
 		

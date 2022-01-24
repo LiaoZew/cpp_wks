@@ -46,8 +46,6 @@ void main_window()
     if (show_demo_window)
         ImGui::ShowDemoWindow(&show_demo_window);
 
-    ImGui::LogButtons();
-
 
 }
 

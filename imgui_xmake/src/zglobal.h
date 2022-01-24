@@ -42,6 +42,8 @@ EXTERN const char* uart_port_items[255] ;
 EXTERN int uart_port_items_idx ;
 EXTERN int uart_port_num;
 
+EXTERN DWORD uart_frame_time;
+
 
 typedef enum{
     uart_open,

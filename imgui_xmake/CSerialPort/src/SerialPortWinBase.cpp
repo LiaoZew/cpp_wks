@@ -153,12 +153,12 @@ bool CSerialPortWinBase::openPort()
                 // @todo
                 // Discards all characters from the output or input buffer of a specified communications resource. It
                 // can also terminate pending read or write operations on the resource.
-                PurgeComm(m_handle, PURGE_TXABORT | PURGE_TXCLEAR | PURGE_RXCLEAR | PURGE_RXABORT);
+                PurgeComm(m_handle, PURGE_TXABORT | PURGE_TXCLEAR | PURGE_RXCLEAR | PURGE_RXABORT);          
 
                 // init event driven approach
                 if (m_operateMode == itas109::/*OperateMode::*/ AsynchronousOperate)
                 {
-                    m_comTimeout.ReadIntervalTimeout = MAXDWORD;
+                    m_comTimeout.ReadIntervalTimeout = 2;//MAXDWORD;
                     m_comTimeout.ReadTotalTimeoutMultiplier = 0;
                     m_comTimeout.ReadTotalTimeoutConstant = 0;
                     m_comTimeout.WriteTotalTimeoutMultiplier = 0;
@@ -409,6 +409,7 @@ int CSerialPortWinBase::readData(char *data, int maxSize)
             if (ReadFile(m_handle, (void *)data, (DWORD)maxSize, &dRet, &m_overlapRead))
             {
                 // data[dRet] = '\0';
+                std::cout<<"1"<<std::endl;
             }
             else
             {
@@ -456,7 +457,7 @@ int CSerialPortWinBase::readAllData(char *data)
         DWORD dwError = 0;
         COMSTAT comstat;
         ClearCommError(m_handle, &dwError, &comstat);
-        maxSize = comstat.cbInQue;
+        maxSize = 1024;//comstat.cbInQue;
     }
     else
     {

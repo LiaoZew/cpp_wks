@@ -23,14 +23,10 @@ public:
 	{
 		//read
         recLen = p_sp->readAllData(str);
-        std::cout<<recLen<<std::endl;
-
 		if(recLen > 0)
 		{
-			std::cout << recLen<< std::endl;
 			str[recLen] = '\0';
-			std::cout << "receive data : " << str << ", receive size : " << recLen << ", receive count : " << std::endl;
-
+			std::cout << "receive data : " << str << std::endl;
 		}
 	};
 
@@ -64,17 +60,24 @@ bool Combo(const char* label, int* currIndex, std::vector<SerialPortInfo>& value
 
 
 
+
+
+
 void open_uart()
 {
     //uart parameters set
     const char* uart_baudrate_items[] = { "1000000", "115200", "9600"};
     static int uart_baudrate_items_idx = 1;
 
+    static mySlot receive(&sp);
+
     if(!uart_window_flag)
     {
         uart_window_flag=true;
 
         uart_statu = uart_close;
+
+        
         
         m_availablePortsList = itas109::CSerialPortInfo::availablePortInfos();
         // std::cout << "availableFriendlyPorts : " << std::endl;
@@ -101,7 +104,10 @@ void open_uart()
     
     if(Combo("##port", &uart_port_items_idx, m_availablePortsList ))
     {
-        sp.close();
+        if(sp.isOpened())
+        {
+            sp.close();
+        }
     }
 
 
@@ -112,29 +118,28 @@ void open_uart()
     {
         if(uart_port_items_idx>-1)
         { 
-            mySlot receive(&sp);
+            
             portName = m_availablePortsList[uart_port_items_idx].portName;
 
             sp.init(portName,\
-            atoi(uart_baudrate_items[uart_baudrate_items_idx]));
-                
+            atoi(uart_baudrate_items[uart_baudrate_items_idx]), \
+            itas109::ParityNone, itas109::DataBits8, itas109::StopOne, itas109::FlowNone, 1024);
+
             
             if(!sp.isOpened())
             {
                 sp.open();
+                
+                sp.setMinByteReadNotify(1);
+                sp.readReady.connect(&receive, &mySlot::OnSendMessage);
             }
 
             if(sp.isOpened())
             {
-                    sp.readReady.connect(&receive, &mySlot::OnSendMessage);
-                    sp.writeData("123456", 7);
+
+                    // sp.writeData("123456", 6);
                 
             }
-
-            
-            
-
-            std::cout<<"uart_statu:"<<sp.isOpened()<<std::endl;
 
 
         }
@@ -144,12 +149,16 @@ void open_uart()
     ImGui::SameLine();
     if(ImGui::RadioButton("关闭",(int *)&uart_statu,uart_close))
     {
-        sp.close();
+        if(sp.isOpened())
+        {
+            sp.close();
+        }
+        
         
     }
 
 
-imsleep(1);
+
 
 
     ImGui::Text("波特率:");
@@ -158,7 +167,10 @@ imsleep(1);
     if(ImGui::Combo("##baudrate", &uart_baudrate_items_idx,\
      uart_baudrate_items, IM_ARRAYSIZE(uart_baudrate_items)))
     {
-        sp.close();
+        if(sp.isOpened())
+        {
+            sp.close();
+        }
     }
     
 

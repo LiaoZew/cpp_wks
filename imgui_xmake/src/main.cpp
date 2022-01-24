@@ -31,6 +31,7 @@ int main(int, char**)
 {
     show_main_window=true;
     show_log_window=true;
+    show_uart_window=true;
     open_reiceve_flag=false;
     // uart_window_flag=false;
 
