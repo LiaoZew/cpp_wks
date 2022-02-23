@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2022-01-19 20:41:54
- * @LastEditTime: 2022-01-25 00:20:46
+ * @LastEditTime: 2022-01-25 00:15:53
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \cpp_wks\imgui_xmake\src\zwindows.cpp
@@ -20,7 +20,7 @@ void main_window()
         ImGui::Begin("zutil", &show_main_window );  
 
         if (ImGui::Button("UART"))
-            show_uart_window();
+            control_uart_window();
 
         if (ImGui::Button("DEMO"))
             MySaveFunction();    
@@ -36,7 +36,10 @@ void main_window()
         open_uart();
         ImGui::End();
     }
-
+    else 
+    {
+        uart_window_flag=false;
+    }
 
     if (show_demo_window)
         ImGui::ShowDemoWindow(&show_demo_window);
@@ -45,9 +48,13 @@ void main_window()
 }
 
 
-void show_uart_window()
+void control_uart_window()
 {
-    uart_window_flag
+    if(show_uart_window==true)
+        show_uart_window=false;
+    else 
+        show_uart_window=true;
+        
 }
 
 void MySaveFunction ()
